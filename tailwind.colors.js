@@ -5,5 +5,6 @@ module.exports = {
   'white': '#fff',
   'white-fade': 'rgba(255,255,255,0.3)',
   'black': '#000',
-  'grey': '#ccc'
+  'grey': '#ccc',
+  'parallax': '#8b5cdd'
 }
