@@ -9,7 +9,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      defaultPrivacyPublic: true,
+      defaultPrivacy: 'public',
       statuses: [
         { title: "Here is the first status", private: false },
         { title: "Here is the second status", private: true },
@@ -30,7 +30,7 @@ class Home extends React.Component {
     return (
       <Layout>
         <div className="flex flex-col items-center justify-start">
-          <StatusEntry defaultPrivacyPublic={ this.state.defaultPrivacyPublic } shareStatus={ this.shareStatus } />
+          <StatusEntry defaultPrivacy={ this.state.defaultPrivacy } shareStatus={ this.shareStatus } />
           <StatusList statuses={ this.state.statuses } />
         </div>
       </Layout>

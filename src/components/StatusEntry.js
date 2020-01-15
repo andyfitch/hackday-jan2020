@@ -6,6 +6,7 @@ class StatusEntry extends React.Component {
     super(props)
 
     this.state = {
+      defaultPrivacy: this.props.defaultPrivacy,
       status: {
         title: null,
         private: false
@@ -29,6 +30,7 @@ class StatusEntry extends React.Component {
   }
   setPublic(e) {
     let val = e.target.value
+    this.setState({ defaultPrivacy: 'public' })
     this.setState(prevState => ({
       status: {
         ...prevState.status,
@@ -38,6 +40,7 @@ class StatusEntry extends React.Component {
   }
   setPrivate(e) {
     let val = e.target.value
+    this.setState({ defaultPrivacy: 'private' })
     this.setState(prevState => ({
       status: {
         ...prevState.status,
@@ -54,8 +57,8 @@ class StatusEntry extends React.Component {
           <button type="submit" className="p-10 bg-grey" onClick={ (event) => this.props.shareStatus(event, this.state.status) }>Share</button>
         </div>
         <div className="flex">
-          <label htmlFor="rdbPrivacyPublic" className="mr-10"><input type="radio" id="rdbPrivacyPublic" name="privacy" onChange={ this.setPublic } checked={this.props.defaultPrivacyPublic} /> Public</label>
-          <label htmlFor="rdbPrivacyPrivate"><input type="radio" id="rdbPrivacyPrivate" name="privacy" onChange={ this.setPrivate } checked={!this.props.defaultPrivacyPublic} /> Private</label>
+          <label htmlFor="rdbPrivacyPublic" className="mr-10"><input type="radio" id="rdbPrivacyPublic" name="privacy" onChange={ this.setPublic } checked={ this.state.defaultPrivacy == 'public' } /> Public</label>
+          <label htmlFor="rdbPrivacyPrivate"><input type="radio" id="rdbPrivacyPrivate" name="privacy" onChange={ this.setPrivate } checked={ this.state.defaultPrivacy == 'private' } /> Private</label>
         </div>
       </div>
     )
