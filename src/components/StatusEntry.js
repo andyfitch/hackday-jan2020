@@ -7,8 +7,8 @@ class StatusEntry extends React.Component {
 
     this.state = {
       status: {
-        statusInputValue: null,
-        privacy: 'public'
+        title: null,
+        private: false
       }
     }
 
@@ -23,7 +23,7 @@ class StatusEntry extends React.Component {
     this.setState(prevState => ({
       status: {
         ...prevState.status,
-        statusInputValue: val
+        title: val
       }
     }))
   }
@@ -32,7 +32,7 @@ class StatusEntry extends React.Component {
     this.setState(prevState => ({
       status: {
         ...prevState.status,
-        privacy: val == 'on' ? 'public' : null
+        private: val == 'on' ? false : null
       }
     }))
   }
@@ -41,7 +41,7 @@ class StatusEntry extends React.Component {
     this.setState(prevState => ({
       status: {
         ...prevState.status,
-        privacy: val == 'on' ? 'private' : null
+        private: val == 'on' ? true : null
       }
     }))
   }
@@ -54,8 +54,8 @@ class StatusEntry extends React.Component {
           <button type="submit" className="p-10 bg-grey" onClick={ (event) => this.props.shareStatus(event, this.state.status) }>Share</button>
         </div>
         <div className="flex">
-          <label htmlFor="rdbPrivacyPublic" className="mr-10"><input type="radio" id="rdbPrivacyPublic" name="privacy" onChange={ this.setPublic } /> Public</label>
-          <label htmlFor="rdbPrivacyPrivate"><input type="radio" id="rdbPrivacyPrivate" name="privacy" onChange={ this.setPrivate } /> Private</label>
+          <label htmlFor="rdbPrivacyPublic" className="mr-10"><input type="radio" id="rdbPrivacyPublic" name="privacy" onChange={ this.setPublic } checked={this.props.defaultPrivacyPublic} /> Public</label>
+          <label htmlFor="rdbPrivacyPrivate"><input type="radio" id="rdbPrivacyPrivate" name="privacy" onChange={ this.setPrivate } checked={!this.props.defaultPrivacyPublic} /> Private</label>
         </div>
       </div>
     )

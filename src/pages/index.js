@@ -8,21 +8,30 @@ class Home extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { newStatus: null }
+    this.state = {
+      defaultPrivacyPublic: true,
+      statuses: [
+        { title: "Here is the first status", private: false },
+        { title: "Here is the second status", private: true },
+        { title: "Here is the third status", private: false }
+      ]
+    }
+
     this.shareStatus = this.shareStatus.bind(this)
   }
 
   shareStatus(event, status) {
-    console.log(status)
-    this.setState({ newStatus: status })
+    let statuses = this.state.statuses
+    statuses.push(status)
+    this.setState({ statuses: statuses })
   }
 
   render() {
     return (
       <Layout>
         <div className="flex flex-col items-center justify-start">
-          <StatusEntry shareStatus={ this.shareStatus } />
-          <StatusList newStatus={ this.state.newStatus } />
+          <StatusEntry defaultPrivacyPublic={ this.state.defaultPrivacyPublic } shareStatus={ this.shareStatus } />
+          <StatusList statuses={ this.state.statuses } />
         </div>
       </Layout>
     )
