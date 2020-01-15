@@ -16,7 +16,7 @@ class StatusList extends React.Component {
         <ul className="w-400 flex flex-col items-start border-grey border-px p-30 mt-30">
           {this.props.statuses.map(navigationItem => (
             <li className={`${
-              navigationItem.private ? (this.state.showPrivate ? `block` : `hidden`) : 'block'
+              navigationItem.privacy == 'private' ? (this.state.showPrivate ? `block` : `hidden`) : 'block'
             } border-b-red border-b-px pb-10 mb-10`} key={navigationItem.title}>
               {navigationItem.title}
             </li>

@@ -6,59 +6,32 @@ class StatusEntry extends React.Component {
     super(props)
 
     this.state = {
-      defaultPrivacy: this.props.defaultPrivacy,
-      status: {
-        title: null,
-        private: false
+      currentStatus: {
+        title: this.props.currentStatus.title,
+        privacy: this.props.currentStatus.privacy
       }
     }
 
-    // binds
-    this.statusInputValueChange = this.statusInputValueChange.bind(this)
-    this.setPublic = this.setPublic.bind(this)
-    this.setPrivate = this.setPrivate.bind(this)
+    console.log(this.props.currentStatus)
   }
 
-  statusInputValueChange(e) {
-    let val = e.target.value
-    this.setState(prevState => ({
-      status: {
-        ...prevState.status,
-        title: val
-      }
-    }))
-  }
-  setPublic(e) {
-    let val = e.target.value
-    this.setState({ defaultPrivacy: 'public' })
-    this.setState(prevState => ({
-      status: {
-        ...prevState.status,
-        private: val == 'on' ? false : null
-      }
-    }))
-  }
-  setPrivate(e) {
-    let val = e.target.value
-    this.setState({ defaultPrivacy: 'private' })
-    this.setState(prevState => ({
-      status: {
-        ...prevState.status,
-        private: val == 'on' ? true : null
-      }
-    }))
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentStatus.privacy !== this.props.currentStatus.privacy) {
+      this.state.currentStatus.privacy = this.props.currentStatus.privacy
+      this.forceUpdate()
+    }
   }
 
   render() {
     return (
       <div className="w-400 flex flex-col border-grey border-px p-30 mt-30">
         <div className="mb-10">
-          <input type="text" placeholder="Enter a status..." className="p-10 border-px border-grey mr-10" onChange={ this.statusInputValueChange } />
-          <button type="submit" className="p-10 bg-grey" onClick={ (event) => this.props.shareStatus(event, this.state.status) }>Share</button>
+          <input type="text" placeholder="Enter a status..." value={ this.props.currentStatus.title } className="p-10 border-px border-grey mr-10" onChange={ (event) => this.props.currentStatusChange(event, 'title') } />
+          <button type="submit" className="p-10 bg-grey" onClick={ (event) => this.props.shareStatus(event, this.props.currentStatus) }>Share</button>
         </div>
         <div className="flex">
-          <label htmlFor="rdbPrivacyPublic" className="mr-10"><input type="radio" id="rdbPrivacyPublic" name="privacy" onChange={ this.setPublic } checked={ this.state.defaultPrivacy == 'public' } /> Public</label>
-          <label htmlFor="rdbPrivacyPrivate"><input type="radio" id="rdbPrivacyPrivate" name="privacy" onChange={ this.setPrivate } checked={ this.state.defaultPrivacy == 'private' } /> Private</label>
+          <label htmlFor="rdbPrivacyPublic" className="mr-10"><input type="radio" id="rdbPrivacyPublic" name="privacy" value="public" onChange={ (event) => this.props.currentStatusChange(event, 'privacy') } checked={ this.state.currentStatus.privacy === 'public' } /> Public</label>
+          <label htmlFor="rdbPrivacyPrivate"><input type="radio" id="rdbPrivacyPrivate" name="privacy" value="private" onChange={ (event) => this.props.currentStatusChange(event, 'privacy') } checked={ this.state.currentStatus.privacy === 'private' } /> Private</label>
         </div>
       </div>
     )
