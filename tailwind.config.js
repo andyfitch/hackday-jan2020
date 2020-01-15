@@ -11,24 +11,34 @@ module.exports = {
       xl: '1280px',
       xxl: '1600px'
     },
+    width: {
+      400: '400px',
+    },
     height: {
-      '100': '100px'
+      100: '100px'
     },
     spacing: {
       'none': '0px',
-      '1': '1px',
-      '2': '2px',
-      '3': '3px',
-      '4': '4px',
-      '5': '5px',
-      '6': '6px',
-      '7': '7px',
-      '8': '8px',
-      '9': '9px',
-      '10': '10px',
-      '15': '15px',
-      '25': '25px',
-      '30': '30px',
+      1: '1px',
+      2: '2px',
+      3: '3px',
+      4: '4px',
+      5: '5px',
+      6: '6px',
+      7: '7px',
+      8: '8px',
+      9: '9px',
+      10: '10px',
+      15: '15px',
+      20: '20px',
+      25: '25px',
+      30: '30px',
+    },
+    borderColor: theme => ({
+      ...theme('colors')
+    }),
+    borderWidth: {
+      px: '1px',
     },
     fontWeight: {
       '400': 400
