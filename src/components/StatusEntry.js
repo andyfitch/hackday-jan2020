@@ -11,8 +11,6 @@ class StatusEntry extends React.Component {
         privacy: this.props.currentStatus.privacy
       }
     }
-
-    console.log(this.props.currentStatus)
   }
 
   componentDidUpdate(prevProps) {

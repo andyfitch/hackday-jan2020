@@ -24,10 +24,7 @@ class Home extends React.Component {
   }
 
   currentStatusChange = (e, type) => {
-    // e.preventDefault()
     let val = e.target.value
-
-    console.log(val)
 
     if (type === 'title') {
       this.setState(prevState => ({
