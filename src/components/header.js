@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 function Header() {
-  const [isExpanded, toggleExpansion] = useState(false);
+  // const [isExpanded, toggleExpansion] = useState(false);
 
   return (
     <header className="flex h-100 bg-parallax text-white">
@@ -19,4 +19,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Header
