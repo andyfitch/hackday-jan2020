@@ -7,15 +7,24 @@ const StatusList = props => {
   return (
     <>
       <ul className='w-400 flex flex-col items-start border-grey border-px p-30 mt-30'>
-        {props.statuses.map(navigationItem => (
-          <li className={`${
-            navigationItem.privacy === 'private' ? (showPrivate ? `block` : `hidden`) : 'block'
-          } border-b-red border-b-px pb-10 mb-10`} key={navigationItem.title}>
+        {props.statuses.map((navigationItem, navigationItemIndex) => (
+          <li
+            className={`${
+              navigationItem.privacy === 'private' ? (showPrivate ? `block` : `hidden`) : 'block'
+            } border-b-red border-b-px pb-10 mb-10`}
+            key={navigationItemIndex}
+          >
             {navigationItem.title}
           </li>
         ))}
       </ul>
-      <button type='button' onClick={() => setShowPrivate(!showPrivate)} className='p-10 bg-grey mt-20'>{ showPrivate ? 'Hide' : 'Show' } private items</button>
+      <button
+        type='button'
+        onClick={() => setShowPrivate(!showPrivate)}
+        className='p-10 bg-grey mt-20'
+      >
+        { showPrivate ? 'Hide' : 'Show' } private items
+      </button>
     </>
   )
 }
